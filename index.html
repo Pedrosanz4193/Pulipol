@@ -717,8 +717,8 @@
 
   // --- Elementos del DOM ---
   const loginScreen = document.getElementById('loginScreen');
-  const usernameInput = document.getElementById('username');
-  const passwordInput = document.getElementById('password');
+  const usernameInput = document.getElementById('usernameInput'); // CORREGIDO
+  const passwordInput = document.getElementById('passwordInput'); // CORREGIDO
   const loginBtn = document.getElementById('loginBtn');
   const loginError = document.getElementById('loginError');
 
@@ -865,7 +865,6 @@
         ["El acoso sexual y el acoso laboral, consistente este último en la realización reiterada, en el marco de una relación de servicio, de actos de acoso psicológico u hostilidad.", "Muy Grave"],
         ["La obstaculización grave al ejercicio de las libertades públicas y derechos sindicales.", "Muy Grave"],
         ["Las infracciones tipificadas como muy graves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Muy Grave"],
-
         // Faltas Graves
         ["La grave desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones o cuando cause descrédito notorio a la Institución Policial.", "Grave"],
         ["La desobediencia a los superiores jerárquicos o los responsables del servicio con motivo de las órdenes o instrucciones legítimas dadas por aquéllos, salvo que constituyan infracción manifiesta del ordenamiento jurídico.", "Grave"],
@@ -874,696 +873,471 @@
         ["La tercera falta injustificada de asistencia al servicio en un período de tres meses cuando las dos anteriores hubieran sido objeto de sanción firme por falta leve.", "Grave"],
         ["No prestar servicio, alegando supuesta enfermedad.", "Grave"],
         ["La falta de rendimiento reiterada que ocasione un perjuicio a los ciudadanos, a las entidades con personalidad jurídica o a la eficacia de los servicios.", "Grave"],
-        ["El abuso de atribuciones cuando no constituya infracción muy grave.", "Grave"],
-        ["La emisión de informes sobre asuntos de servicio que, sin faltar abiertamente a la verdad, la desnaturalicen, valiéndose de términos ambiguos, confusos o tendenciosos, o la alteren mediante inexactitudes, cuando se cause perjuicio a la Administración o a los ciudadanos, siempre que el hecho no constituya delito o falta muy grave.", "Grave"],
-        ["La intervención en un procedimiento administrativo cuando concurra alguna de las causas legales de abstención.", "Grave"],
-        ["No ir provisto en los actos de servicio del uniforme reglamentario, cuando su uso sea preceptivo, de los distintivos de la categoría o cargo, del arma reglamentaria o de los medios de protección o acción que se determinen, siempre que no medie autorización en contrario.", "Grave"],
-        ["Exhibir armas sin causa justificada, así como utilizarlas en acto de servicio o fuera de él infringiendo las normas que regulan su empleo.", "Grave"],
-        ["Dar lugar al extravío, pérdida o sustracción por negligencia inexcusable de los distintivos de identificación o del arma reglamentaria.", "Grave"],
-        ["Asistir de uniforme a cualquier manifestación o reunión pública, salvo que se trate de actos de servicio, o actos oficiales en los que la asistencia de uniforme esté indicada o haya sido autorizada.", "Grave"],
-        ["Causar, por negligencia inexcusable, daños graves en la conservación de los locales, del material o de los demás elementos relacionados con el servicio o dar lugar al extravío, la pérdida o la sustracción de estos.", "Grave"],
-        ["Impedir, limitar u obstaculizar a los subordinados el ejercicio de los derechos que tengan reconocidos, siempre que no constituya falta muy grave.", "Grave"],
-        ["Embriagarse o consumir drogas tóxicas, estupefacientes o sustancias psicotrópicas fuera del servicio, cuando tales circunstancias tengan carácter habitual o afecten a la imagen del Cuerpo Nacional de Policía. Se entenderá que existe habitualidad cuando estuvieren acreditados tres o más episodios de embriaguez o consumo de las sustancias referidas en un periodo de un año.", "Grave"],
-        ["La tenencia de drogas tóxicas, estupefacientes o sustancias psicotrópicas, excepto que esa tenencia se derive de actuaciones propias del servicio.", "Grave"],
-        ["Solicitar y obtener cambios de destino mediando cualquier recompensa, ánimo de lucro o falseando las condiciones que los regulan.", "Grave"],
-        ["Emplear, o autorizar la utilización para usos no relacionados con el servicio o con ocasión de este, o sin que medie causa justificada, de medios o recursos inherentes a la función policial.", "Grave"],
-        ["Las infracciones a lo dispuesto en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos, no constitutivas de falta muy grave.", "Grave"],
-        ["El incumplimiento de los plazos u otras disposiciones de procedimiento en materia de incompatibilidades, cuando no supongan mantenimiento de una situación de incompatibilidad.", "Grave"],
-        ["La violación del secreto profesional cuando no perjudique el desarrollo de la labor policial, a las entidades con personalidad jurídica o a cualquier ciudadano.", "Grave"],
-        ["La falta de colaboración manifiesta con otros miembros de los Cuerpos y Fuerzas de Seguridad, siempre que no merezca la calificación de falta muy grave.", "Grave"],
-        ["La infracción de deberes u obligaciones legales inherentes al cargo o a la función policial, cuando se produzcan de forma grave y manifiesta.", "Grave"],
-        ["Haber sido condenado en virtud de sentencia firme por un delito doloso, siempre que no constituya infracción muy grave, o por una falta dolosa cuando la infracción penal cometida esté relacionada con el servicio.", "Grave"],
-        ["La no prestación de auxilio con urgencia en aquellos hechos o circunstancias graves en que sea obligada su actuación, salvo que constituya delito.", "Grave"],
-        ["La infracción de las normas de prevención de riesgos laborales que pongan en grave riesgo la vida, salud, o integridad física, propia o de sus compañeros o subordinados.", "Grave"],
-        ["La negativa reiterada a tramitar cualquier solicitud, reclamación o queja relacionada con el servicio, siempre que no constituya falta leve.", "Grave"],
-        ["Aquellas acciones u omisiones tipificadas como faltas muy graves que, de acuerdo con los criterios que se establecen en el artículo 12, merezcan la calificación de graves, y sin que estas a su vez puedan ser calificadas como faltas leves.", "Grave"],
-
-        // Faltas Leves (retomadas de la versión anterior)
-        ["El retraso o la negligencia en el cumplimiento de las funciones y órdenes recibidas.", "Leve"],
-        ["La incorrección con los ciudadanos, o con otros miembros de los Cuerpos y Fuerzas de Seguridad, siempre que no merezcan una calificación más grave.", "Leve"],
-        ["La inasistencia al servicio que no constituya falta de mayor gravedad y el incumplimiento de la jornada de trabajo, así como las faltas repetidas de puntualidad, en los 30 días precedentes.", "Leve"],
-        ["El mal uso o el descuido en la conservación de los locales, del material o de los demás elementos de los servicios, así como el incumplimiento de las normas dadas en esta materia, cuando no constituya falta más grave.", "Leve"],
-        ["Dar lugar al extravío, pérdida o sustracción por simple negligencia, de los distintivos de identificación, del arma reglamentaria u otros medios o recursos destinados a la función policial.", "Leve"],
-        ["La exhibición de los distintivos de identificación sin causa justificada.", "Leve"],
-        ["Prescindir del conducto reglamentario para formular cualquier solicitud, reclamación o queja relacionada con el servicio, así como no tramitar las mismas. Quedan exceptuadas del conducto reglamentario aquellas que se formulen por los representantes de las organizaciones sindicales en el ejercicio de la actividad sindical.", "Leve"],
-        ["El descuido en el aseo personal y el incumplimiento de las normas sobre la uniformidad, siempre que no constituya falta grave.", "Leve"],
-        ["La ausencia injustificada de cualquier servicio, cuando no merezca calificación más grave.", "Leve"],
-        ["La omisión intencionada de saludo a un superior, que éste no lo devuelva o infringir de otro modo las normas que lo regulan.", "Leve"],
-        ["Cualquier clase de juego que se lleve a cabo en las dependencias policiales, siempre que perjudique la prestación del servicio o menoscabe la imagen policial.", "Leve"],
-        ["Ostentar insignias, condecoraciones u otros distintivos, sin estar autorizado para ello, siempre que no merezca una calificación más grave.", "Leve"],
-        ["Haber sido condenado en virtud de sentencia firme por una falta dolosa cuando la infracción penal cometida cause daño a la Administración o a los Administrados.", "Leve"],
-        ["Aquellas acciones u omisiones tipificadas como faltas graves que, de acuerdo con los criterios que se establecen en el artículo 12, merezcan la calificación de leves.", "Leve"]
+        ["El abuso de atribuciones cuando no constituya falta muy grave.", "Grave"],
+        ["La desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones.", "Grave"],
+        ["El incumplimiento de órdenes o instrucciones legítimas dadas por los superiores o responsables del servicio, salvo que constituyan infracción manifiesta del ordenamiento jurídico.", "Grave"],
+        ["El incumplimiento de la obligación de dar cuenta a la superioridad con la debida diligencia de todo asunto que por su entidad requiera su conocimiento o decisión urgente.", "Grave"],
+        ["El abandono de servicio sin causa justificada, cuando no constituya falta muy grave.", "Grave"],
+        ["La utilización de emblemas, uniformes o distintivos de la Institución Policial sin autorización, o su uso indebido.", "Grave"],
+        ["El consumo de bebidas alcohólicas durante el servicio o en estado de embriaguez, si no constituye falta muy grave.", "Grave"],
+        ["La falta de colaboración con otros miembros de las Fuerzas y Cuerpos de Seguridad, cuando no resulte gravemente perjudicado el servicio o se deriven consecuencias graves para la seguridad ciudadana.", "Grave"],
+        ["La divulgación de asuntos o informaciones de la Institución Policial que no hayan sido previamente autorizados para su publicación.", "Grave"],
+        ["La participación en juegos de azar o apuestas durante el servicio, si no constituyen delito.", "Grave"],
+        ["El incumplimiento de las normas sobre incompatibilidades, cuando no dé lugar a una situación de incompatibilidad.", "Grave"],
+        ["La reiteración en faltas leves.", "Grave"],
+        ["La inobservancia de la obligación de poner en conocimiento de la superioridad los cambios de domicilio, de situación familiar o de cualquier otra circunstancia personal que afecte al servicio.", "Grave"],
+        ["El no hallarse en condiciones psicofísicas adecuadas para el desempeño del servicio, cuando ello sea imputable al funcionario y no constituya falta muy grave.", "Grave"],
+        ["Las infracciones tipificadas como graves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Grave"],
+        // Faltas Leves
+        ["La ligera desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones.", "Leve"],
+        ["El retraso o la negligencia en el cumplimiento de los deberes, cuando no constituya falta grave o muy grave.", "Leve"],
+        ["La incorrección con el público o con los compañeros o subordinados.", "Leve"],
+        ["El incumplimiento injustificado del horario de trabajo, cuando no constituya falta grave.", "Leve"],
+        ["La falta de aseo y compostura personal.", "Leve"],
+        ["La no utilización del uniforme reglamentario o su uso incorrecto, cuando así se establezca.", "Leve"],
+        ["El descuido en la conservación de los útiles, mobiliario o material de la Institución Policial.", "Leve"],
+        ["Las infracciones tipificadas como leves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Leve"]
       ],
       choices: ["Leve", "Grave", "Muy Grave"]
     }
   };
 
   // --- Funciones de Utilidad ---
-  function showScreen(screenToShow) {
-    // Esconder la pantalla actual con un poco de retraso para la animación
-    if (currentScreen && currentScreen !== screenToShow) {
-      currentScreen.classList.add('hidden');
+  function showScreen(screenId) {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => {
+      if (screen) { // Añadido chequeo de existencia
+        screen.classList.add('hidden');
+      }
+    });
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) { // Añadido chequeo de existencia
+      targetScreen.classList.remove('hidden');
     }
-    // Mostrar la nueva pantalla
-    screenToShow.classList.remove('hidden');
-    currentScreen = screenToShow;
-    window.scrollTo(0, 0); // Desplazar al inicio de la página
+    // Asegurarse de que el scroll esté arriba al cambiar de pantalla
+    if (targetScreen && targetScreen.id !== 'gameScreen') { // Evitar scroll en gameScreen para mantener posición
+        targetScreen.scrollTop = 0;
+    }
   }
 
-  function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
+  function showMessage(element, message, type = 'error') {
+    if (element) { // Añadido chequeo de existencia
+      element.textContent = message;
+      element.className = 'error-message ' + type;
     }
-    return array;
   }
 
-  function stopTimer() {
+  function clearMessage(element) {
+    if (element) { // Añadido chequeo de existencia
+      element.textContent = '';
+      element.className = 'error-message'; // Restablece la clase base
+    }
+  }
+
+  // --- Funciones de Navegación y Lógica Principal ---
+  function login() {
+    clearMessage(loginError);
+    const username = usernameInput ? usernameInput.value : '';
+    const password = passwordInput ? passwordInput.value : '';
+
+    if (username === 'admin' && password === 'admin') {
+      loggedInUser = username;
+      showMenu('Bienvenido, ' + loggedInUser);
+    } else {
+      showMessage(loginError, 'Credenciales incorrectas.');
+    }
+  }
+
+  function showMenu(welcomeText) {
+    showScreen('menuScreen');
+    const welcomeDisplay = document.querySelector('#menuScreen .topbar .welcome-text');
+    if (welcomeDisplay) { // Añadido chequeo de existencia
+      welcomeDisplay.textContent = welcomeText;
+    }
+  }
+
+  function startGame(gameType) {
+    currentGameType = gameType;
+    currentQuestions = generateQuestions(gameType, numQuestionsInput ? parseInt(numQuestionsInput.value) : 10);
+    if (currentQuestions.length === 0) {
+      showMessage(generateTestError, 'No se pudieron generar preguntas con los criterios seleccionados.');
+      return;
+    }
+    currentQuestionIndex = 0;
+    userAnswers = {};
+    correctAnswersCount = 0;
+    showScreen('gameScreen');
+    if (gameTitleDisplay) { // Añadido chequeo de existencia
+        gameTitleDisplay.textContent = gameData[gameType].title;
+    }
+    startQuizTimer(testTimeInput ? parseInt(testTimeInput.value) : 10);
+    displayQuestion();
+  }
+
+  function displayQuestion() {
+    clearMessage(resultMessage);
+    if (currentQuestions.length === 0) {
+      questionText.textContent = 'No hay preguntas disponibles.';
+      choicesContainer.innerHTML = '';
+      return;
+    }
+
+    const question = currentQuestions[currentQuestionIndex];
+    if (questionText) { // Añadido chequeo de existencia
+        questionText.textContent = `${currentQuestionIndex + 1}. ${question[0]}`;
+    }
+
+    if (choicesContainer) { // Añadido chequeo de existencia
+        choicesContainer.innerHTML = '';
+        gameData[currentGameType].choices.forEach((choice, index) => {
+            const button = document.createElement('button');
+            button.textContent = choice;
+            button.onclick = () => selectAnswer(index);
+            choicesContainer.appendChild(button);
+        });
+    }
+
+    // Resaltar respuesta seleccionada previamente
+    if (userAnswers[currentQuestionIndex] !== undefined) {
+      const buttons = choicesContainer ? choicesContainer.querySelectorAll('button') : [];
+      if (buttons[userAnswers[currentQuestionIndex]]) {
+        buttons[userAnswers[currentQuestionIndex]].classList.add('selected');
+      }
+    }
+
+    updateNavButtons();
+  }
+
+  function selectAnswer(selectedIndex) {
+    const question = currentQuestions[currentQuestionIndex];
+    const correctIndex = gameData[currentGameType].choices.indexOf(question[1]);
+
+    userAnswers[currentQuestionIndex] = selectedIndex;
+
+    const buttons = choicesContainer ? choicesContainer.querySelectorAll('button') : [];
+    buttons.forEach((button, index) => {
+      button.disabled = true; // Deshabilita todos los botones una vez que se selecciona una respuesta
+      if (index === correctIndex) {
+        button.classList.add('correct');
+      } else if (index === selectedIndex) {
+        button.classList.add('incorrect');
+      }
+    });
+
+    if (selectedIndex === correctIndex) {
+      showMessage(resultMessage, '¡Correcto!', 'success');
+    } else {
+      showMessage(resultMessage, 'Incorrecto. La respuesta correcta era: ' + question[1], 'error');
+      // Registrar pregunta incorrecta
+      const qKey = `${currentGameType}-${question[0]}`;
+      incorrectQuestionsStats[qKey] = (incorrectQuestionsStats[qKey] || 0) + 1;
+      localStorage.setItem('incorrectQuestionsStats', JSON.stringify(incorrectQuestionsStats));
+    }
+    updateNavButtons(); // Permite navegación inmediata si se selecciona respuesta
+  }
+
+  function updateNavButtons() {
+    if (prevBtn) { // Añadido chequeo de existencia
+      prevBtn.disabled = currentQuestionIndex === 0;
+    }
+    if (nextBtn) { // Añadido chequeo de existencia
+      nextBtn.disabled = currentQuestionIndex === currentQuestions.length - 1 && userAnswers[currentQuestionIndex] !== undefined;
+      // El botón "Siguiente" se deshabilita solo en la última pregunta si ya se respondió
+    }
+    // Si la última pregunta está respondida, el botón "Siguiente" debería ser "Finalizar"
+    if (nextBtn && currentQuestionIndex === currentQuestions.length - 1) {
+        if (userAnswers[currentQuestionIndex] !== undefined) {
+            nextBtn.textContent = 'FINALIZAR';
+            nextBtn.onclick = finishQuiz;
+        } else {
+            nextBtn.textContent = 'Siguiente';
+            nextBtn.onclick = showNextQuestion;
+        }
+    } else if (nextBtn) {
+        nextBtn.textContent = 'Siguiente';
+        nextBtn.onclick = showNextQuestion;
+    }
+  }
+
+  function showNextQuestion() {
+    if (currentQuestionIndex < currentQuestions.length - 1) {
+      currentQuestionIndex++;
+      displayQuestion();
+    } else {
+        // Si ya está en la última pregunta y el botón es "Siguiente", significa que no se ha respondido
+        // Si ya está en la última pregunta y el botón es "Finalizar", ya se manejó con finishQuiz
+    }
+  }
+
+  function showPreviousQuestion() {
+    if (currentQuestionIndex > 0) {
+      currentQuestionIndex--;
+      displayQuestion();
+    }
+  }
+
+  function finishQuiz() {
+    clearInterval(quizInterval);
+    correctAnswersCount = 0;
+    currentQuestions.forEach((question, index) => {
+      const selectedAnswerIndex = userAnswers[index];
+      if (selectedAnswerIndex !== undefined) {
+        const correctAnswer = question[1];
+        const selectedChoice = gameData[currentGameType].choices[selectedAnswerIndex];
+        if (selectedChoice === correctAnswer) {
+          correctAnswersCount++;
+        }
+      }
+    });
+
+    showScreen('gameResultsScreen'); // Asegúrate de que tienes una pantalla con este ID
+    if (finalScoreDisplay) { // Añadido chequeo de existencia
+        finalScoreDisplay.textContent = `Puntuación Final: ${correctAnswersCount} / ${currentQuestions.length}`;
+    }
+    // Puedes añadir más lógica aquí para guardar resultados o mostrar detalles
+  }
+
+  function startQuizTimer(minutes) {
     if (quizInterval) {
       clearInterval(quizInterval);
-      quizInterval = null;
     }
-    timerDisplay.classList.add('hidden');
-  }
-
-  function startTimer(durationInMinutes) {
-    stopTimer(); // Asegurarse de que no haya un temporizador anterior
     quizStartTime = Date.now();
-    const endTime = quizStartTime + durationInMinutes * 60 * 1000;
-
-    timerDisplay.classList.remove('hidden');
+    const endTime = quizStartTime + minutes * 60 * 1000;
 
     quizInterval = setInterval(() => {
       const timeLeft = endTime - Date.now();
       if (timeLeft <= 0) {
         clearInterval(quizInterval);
-        timerDisplay.textContent = '00:00';
-        endGame('time_out');
-      } else {
-        const minutes = Math.floor(timeLeft / (60 * 1000));
-        const seconds = Math.floor((timeLeft % (60 * 1000)) / 1000);
-        timerDisplay.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        if (timerDisplay) { // Añadido chequeo de existencia
+            timerDisplay.textContent = '00:00';
+        }
+        finishQuiz();
+        return;
+      }
+      const totalSeconds = Math.floor(timeLeft / 1000);
+      const minutesLeft = Math.floor(totalSeconds / 60);
+      const secondsLeft = totalSeconds % 60;
+      const formattedTime = `${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
+      if (timerDisplay) { // Añadido chequeo de existencia
+          timerDisplay.textContent = formattedTime;
       }
     }, 1000);
   }
 
-  // --- Funciones de Navegación de Pantallas ---
-  function showLogin() {
-    showScreen(loginScreen);
-    usernameInput.value = '';
-    passwordInput.value = '';
-    loginError.textContent = '';
-    usernameInput.focus();
-  }
+  function showStats() {
+    showScreen('statsScreen');
+    if (statsContent) { // Añadido chequeo de existencia
+        statsContent.innerHTML = '<h3>Preguntas Falladas Frecuentemente</h3>';
+        const statsList = document.createElement('ul');
+        const sortedStats = Object.entries(incorrectQuestionsStats).sort(([, a], [, b]) => b - a);
 
-  function showMenu() {
-    stopTimer(); // Asegurarse de que el temporizador se detenga al volver al menú
-    showScreen(menuScreen);
-  }
-
-  // --- Lógica de Login ---
-  function login() {
-    const username = usernameInput.value.trim();
-    const password = passwordInput.value.trim();
-
-    // Validación simple (puedes reemplazar esto con una llamada a un backend)
-    if (username === 'admin' && password === 'admin') { // Ejemplo de credenciales
-      loggedInUser = username;
-      loginError.textContent = '';
-      showMenu();
-      // Mostrar tarjetas de admin si es necesario
-      gameStatsCard.style.display = 'flex'; // Usar flex para mostrar/ocultar
-      gameGenerateTestCard.style.display = 'flex';
-      gameChatCard.style.display = 'flex';
-    } else if (username === 'user' && password === 'user') { // Ejemplo de credenciales de usuario normal
-      loggedInUser = username;
-      loginError.textContent = '';
-      showMenu();
-      // Ocultar tarjetas de admin para usuarios normales
-      gameStatsCard.style.display = 'none';
-      gameGenerateTestCard.style.display = 'none';
-      gameChatCard.style.display = 'none';
-    }
-    else {
-      loginError.textContent = 'Usuario o contraseña incorrectos. Intenta con "admin/admin" o "user/user".';
-      passwordInput.value = ''; // Limpiar contraseña al fallar
-    }
-  }
-
-  function logout() {
-    loggedInUser = null;
-    incorrectQuestionsStats = {}; // Limpiar estadísticas al cerrar sesión
-    localStorage.removeItem('incorrectQuestionsStats');
-    showLogin();
-  }
-
-  // --- Lógica del Juego ---
-  function startGame(gameType, questionsToUse = null, timeLimit = 0) {
-    currentGameType = gameType;
-    currentQuestions = questionsToUse || shuffleArray([...gameData[gameType].questions]); // Usar preguntas específicas o todas mezcladas
-    currentQuestionIndex = 0;
-    userAnswers = {};
-    correctAnswersCount = 0;
-    resultMessage.textContent = '';
-    finalScoreDisplay.classList.add('hidden');
-
-    gameTitleDisplay.textContent = gameData[gameType].title;
-    showScreen(gameScreen);
-    renderQuestion();
-
-    if (timeLimit > 0) {
-      startTimer(timeLimit);
-    } else {
-      stopTimer(); // Asegurarse de que el temporizador no esté visible si no hay límite
-    }
-  }
-
-  function renderQuestion() {
-    stopTimer(); // Detener el temporizador mientras el usuario responde
-    const question = currentQuestions[currentQuestionIndex];
-    questionText.textContent = question[0];
-    choicesContainer.innerHTML = '';
-    resultMessage.textContent = '';
-    resultMessage.classList.remove('incorrect'); // Resetear clase de error
-    finalScoreDisplay.classList.add('hidden');
-
-    const choices = shuffleArray([...gameData[currentGameType].choices]); // Mezclar las opciones para cada pregunta
-
-    choices.forEach((choice, index) => {
-      const button = document.createElement('button');
-      button.textContent = choice;
-      button.dataset.choice = choice;
-      button.addEventListener('click', () => selectAnswer(choice, index));
-      choicesContainer.appendChild(button);
-
-      // Si ya hay una respuesta guardada, resaltarla y deshabilitar botones
-      if (userAnswers[currentQuestionIndex] !== undefined) {
-        if (button.dataset.choice === question[1]) {
-          button.classList.add('correct');
-        } else if (button.dataset.choice === userAnswers[currentQuestionIndex]) {
-          button.classList.add('incorrect');
-        }
-        button.disabled = true; // Deshabilitar después de responder
-      }
-    });
-
-    updateNavigationButtons();
-    // Reanudar el temporizador solo si es un test con tiempo y no está en la última pregunta o ya finalizado
-    if (currentGameType === 'test' && quizInterval === null && currentQuestionIndex < currentQuestions.length && !finalScoreDisplay.classList.contains('hidden')) {
-        // La lógica del timer debería ser global para todo el examen, no por pregunta.
-        // Si el quizInterval está null y el test está en curso, significa que el timer no se ha reanudado.
-        // Aquí no se reinicia el timer, se asume que se detuvo antes de renderizar la pregunta.
-        // El timer debe continuar en el fondo si es un test con tiempo.
-        // La función `startTimer` ya maneja la reanudación si se le llama con la misma duración.
-        // No se necesita re-llamar aquí si el timer ya está corriendo o ya terminó.
-        // Si el juego es 'test' y se está mostrando la pantalla de juego, el timer debería correr.
-        // Solo necesitamos reanudarlo si se detuvo explícitamente y no ha terminado.
-        // Esto se controla mejor al pasar de pantalla, no al renderizar cada pregunta.
-    }
-  }
-
-  function selectAnswer(selectedChoice, choiceIndex) {
-    const question = currentQuestions[currentQuestionIndex];
-    const correctAnswer = question[1];
-    const buttons = choicesContainer.querySelectorAll('button');
-
-    buttons.forEach(button => {
-      button.disabled = true; // Deshabilitar todos los botones después de una selección
-      if (button.dataset.choice === correctAnswer) {
-        button.classList.add('correct');
-      } else if (button.dataset.choice === selectedChoice) {
-        button.classList.add('incorrect');
-      }
-    });
-
-    userAnswers[currentQuestionIndex] = selectedChoice;
-
-    if (selectedChoice === correctAnswer) {
-      resultMessage.textContent = '¡Respuesta Correcta! ✅';
-      resultMessage.classList.remove('incorrect');
-    } else {
-      resultMessage.textContent = `Incorrecto. La respuesta correcta era: "${correctAnswer}" ❌`;
-      resultMessage.classList.add('incorrect');
-      addIncorrectQuestion(currentGameType, question[0], correctAnswer, selectedChoice);
-    }
-    updateNavigationButtons(); // Actualiza para permitir navegación si es test o fin de juego
-  }
-
-  function updateNavigationButtons() {
-    prevBtn.disabled = currentQuestionIndex === 0;
-
-    if (currentGameType === 'test') {
-      nextBtn.textContent = (currentQuestionIndex === currentQuestions.length - 1) ? 'Finalizar Test' : 'Siguiente →';
-      nextBtn.onclick = () => {
-        if (currentQuestionIndex === currentQuestions.length - 1) {
-          endGame('manual_finish');
+        if (sortedStats.length === 0) {
+            statsList.innerHTML = '<li class="no-data">No hay datos de preguntas falladas.</li>';
         } else {
-          currentQuestionIndex++;
-          renderQuestion();
+            sortedStats.forEach(([question, count]) => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${question.split('-')[0]}:</strong> ${question.split('-')[1]} <br> <small>Fallada ${count} veces</small>`;
+                statsList.appendChild(li);
+            });
         }
-      };
-      // En un test, el botón 'Siguiente' se habilita si la pregunta actual ya fue respondida
-      nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
-    } else {
-      // Para juegos normales (no test), el botón "Siguiente"
-      nextBtn.textContent = 'Siguiente →';
-      nextBtn.onclick = () => {
-        if (currentQuestionIndex < currentQuestions.length - 1) {
-          currentQuestionIndex++;
-          renderQuestion();
-        } else {
-          // Si es la última pregunta del juego normal, finalizar
-          endGame('manual_finish');
-        }
-      };
-      // Se habilita si la pregunta actual ya fue respondida
-      nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+        statsContent.appendChild(statsList);
     }
   }
 
-  function endGame(reason) {
-    stopTimer();
-    correctAnswersCount = 0;
-    for (let i = 0; i < currentQuestions.length; i++) {
-      if (userAnswers[i] === currentQuestions[i][1]) {
-        correctAnswersCount++;
-      }
-    }
-
-    resultMessage.textContent = ''; // Limpiar mensaje de resultado de la última pregunta
-    if (reason === 'time_out') {
-        finalScoreDisplay.textContent = `¡Tiempo agotado! Puntuación: ${correctAnswersCount} / ${currentQuestions.length}`;
-    } else {
-        finalScoreDisplay.textContent = `Test Finalizado. Puntuación: ${correctAnswersCount} / ${currentQuestions.length}`;
-    }
-    finalScoreDisplay.classList.remove('hidden');
-
-    prevBtn.disabled = true;
-    nextBtn.disabled = true; // Deshabilitar navegación después de finalizar el juego
-    nextBtn.textContent = 'Finalizado'; // Cambiar texto del botón
+  function showGenerateTest() {
+    showScreen('generateTestScreen');
+    clearMessage(generateTestError);
+    // Reiniciar checkboxes a un estado por defecto si es necesario
+    if (jefeDirectorCheckbox) jefeDirectorCheckbox.checked = true;
+    if (loexCheckbox) loexCheckbox.checked = true;
+    if (lo42010Checkbox) lo42010Checkbox.checked = true;
+    if (numQuestionsInput) numQuestionsInput.value = 10;
+    if (testTimeInput) testTimeInput.value = 10;
   }
 
-  // --- Lógica de Estadísticas ---
-  function addIncorrectQuestion(game, questionText, correctAnswer, userAnswer) {
-    if (!incorrectQuestionsStats[game]) {
-      incorrectQuestionsStats[game] = {};
-    }
-    if (!incorrectQuestionsStats[game][questionText]) {
-      incorrectQuestionsStats[game][questionText] = {
-        correctAnswer: correctAnswer,
-        timesFailed: 0,
-        lastIncorrectAttempt: userAnswer
-      };
-    }
-    incorrectQuestionsStats[game][questionText].timesFailed++;
-    incorrectQuestionsStats[game][questionText].lastIncorrectAttempt = userAnswer;
-    localStorage.setItem('incorrectQuestionsStats', JSON.stringify(incorrectQuestionsStats));
-  }
+  function generateCustomTest() {
+    clearMessage(generateTestError);
+    const selectedTypes = [];
+    if (jefeDirectorCheckbox && jefeDirectorCheckbox.checked) selectedTypes.push('jefeDirector');
+    if (loexCheckbox && loexCheckbox.checked) selectedTypes.push('loex');
+    if (lo42010Checkbox && lo42010Checkbox.checked) selectedTypes.push('lo42010');
 
-  function showStatistics() {
-    showScreen(statsScreen);
-    statsContent.innerHTML = ''; // Limpiar contenido anterior
-
-    let hasData = false;
-    for (const gameType in incorrectQuestionsStats) {
-      if (Object.keys(incorrectQuestionsStats[gameType]).length > 0) {
-        hasData = true;
-        const gameTitle = gameData[gameType] ? gameData[gameType].title : gameType;
-        const gameSection = document.createElement('div');
-        gameSection.innerHTML = `<h3>${gameTitle}</h3>`;
-        const ul = document.createElement('ul');
-
-        // Ordenar las preguntas por número de fallos (descendente)
-        const sortedQuestions = Object.entries(incorrectQuestionsStats[gameType]).sort(([, a], [, b]) => b.timesFailed - a.timesFailed);
-
-        sortedQuestions.forEach(([question, data]) => {
-          const li = document.createElement('li');
-          li.innerHTML = `<strong>Pregunta:</strong> ${question}<br>
-                          <strong>Respuesta Correcta:</strong> ${data.correctAnswer}<br>
-                          <strong>Veces Fallada:</strong> ${data.timesFailed} veces`;
-          ul.appendChild(li);
-        });
-        gameSection.appendChild(ul);
-        statsContent.appendChild(gameSection);
-      }
-    }
-
-    if (!hasData) {
-      statsContent.innerHTML = '<p class="no-data">Aún no hay preguntas falladas registradas.</p>';
-    }
-  }
-
-  // --- Lógica de Generar Test ---
-  function showGenerateTestScreen() {
-    showScreen(generateTestScreen);
-    generateTestError.textContent = '';
-    // Resetear checkboxes y valores por defecto
-    jefeDirectorCheckbox.checked = false;
-    loexCheckbox.checked = false;
-    lo42010Checkbox.checked = false;
-    numQuestionsInput.value = 10;
-    testTimeInput.value = 10;
-  }
-
-  function generateTest() {
-    const selectedGames = [];
-    if (jefeDirectorCheckbox.checked) {
-      selectedGames.push('jefeDirector');
-    }
-    if (loexCheckbox.checked) {
-      selectedGames.push('loex');
-    }
-    if (lo42010Checkbox.checked) {
-      selectedGames.push('lo42010');
-    }
-
-    if (selectedGames.length === 0) {
-      generateTestError.textContent = 'Debes seleccionar al menos un tipo de juego para el test.';
+    if (selectedTypes.length === 0) {
+      showMessage(generateTestError, 'Selecciona al menos un tipo de juego.', 'error');
       return;
     }
 
-    const numQuestions = parseInt(numQuestionsInput.value, 10);
-    const testTime = parseInt(testTimeInput.value, 10);
+    const numQuestions = numQuestionsInput ? parseInt(numQuestionsInput.value) : 0;
+    const testTime = testTimeInput ? parseInt(testTimeInput.value) : 0;
 
     if (isNaN(numQuestions) || numQuestions <= 0) {
-      generateTestError.textContent = 'El número de preguntas debe ser un valor positivo válido.';
+      showMessage(generateTestError, 'Número de preguntas inválido.', 'error');
       return;
     }
     if (isNaN(testTime) || testTime <= 0) {
-      generateTestError.textContent = 'El tiempo límite del examen debe ser un valor positivo válido.';
+      showMessage(generateTestError, 'Tiempo límite inválido.', 'error');
       return;
     }
 
-    let allAvailableQuestions = [];
-    selectedGames.forEach(game => {
-      // Asegúrate de que gameData[game] y gameData[game].questions existan
-      if (gameData[game] && gameData[game].questions) {
-        allAvailableQuestions = allAvailableQuestions.concat(gameData[game].questions);
+    // Generar preguntas de los tipos seleccionados
+    let allPossibleQuestions = [];
+    selectedTypes.forEach(type => {
+      if (gameData[type] && gameData[type].questions) {
+        allPossibleQuestions = allPossibleQuestions.concat(gameData[type].questions.map(q => [q[0], q[1], type])); // Añadir tipo para seguimiento
       }
     });
 
-    if (allAvailableQuestions.length === 0) {
-      generateTestError.textContent = 'No hay preguntas disponibles para los juegos seleccionados. Por favor, revisa los datos del juego.';
+    if (allPossibleQuestions.length < numQuestions) {
+      showMessage(generateTestError, `No hay suficientes preguntas (${allPossibleQuestions.length}) para generar un test de ${numQuestions} preguntas.`, 'error');
       return;
     }
 
-    // Mezclar todas las preguntas y tomar el número deseado
-    const shuffledQuestions = shuffleArray(allAvailableQuestions);
-    const questionsForTest = shuffledQuestions.slice(0, numQuestions);
+    // Mezclar y seleccionar un subconjunto de preguntas
+    const shuffledQuestions = allPossibleQuestions.sort(() => 0.5 - Math.random());
+    const finalQuestions = shuffledQuestions.slice(0, numQuestions);
 
-    if (questionsForTest.length === 0) {
-        generateTestError.textContent = 'No se pudieron generar preguntas con los criterios seleccionados. Intenta con menos preguntas o más categorías.';
-        return;
+    // Iniciar el juego con las preguntas generadas
+    currentGameType = 'custom'; // Tipo de juego personalizado
+    gameData.custom = { // Definir un tipo de juego 'custom' temporalmente
+        title: "Evaluación Personalizada",
+        questions: finalQuestions,
+        choices: ["Leve", "Grave", "Muy Grave", "Jefe", "Director"] // Asegurarse de tener todas las opciones posibles
+    };
+
+    startGame('custom');
+  }
+
+  function generateQuestions(type, count) {
+    if (!gameData[type] || !gameData[type].questions) {
+      console.error('Tipo de juego no encontrado:', type);
+      return [];
     }
-
-    generateTestError.textContent = ''; // Limpiar errores
-    startGame('test', questionsForTest, testTime); // Iniciar el juego en modo test con tiempo
+    const allQuestions = gameData[type].questions;
+    const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
   }
 
-  // --- Lógica de Chat Simulado ---
-  function showChatLoginScreen() {
-    showScreen(chatLoginScreen);
-    chatUsernameInput.value = '';
-    chatLoginError.textContent = '';
+  // --- Funciones de Chat ---
+  function showChatLogin() {
+    showScreen('chatLoginScreen');
+    clearMessage(chatLoginError);
+    if (chatUsernameInput) { // Añadido chequeo de existencia
+        chatUsernameInput.value = '';
+    }
   }
 
-  function connectToChat() {
-    const username = chatUsernameInput.value.trim();
+  function connectChat() {
+    clearMessage(chatLoginError);
+    const username = chatUsernameInput ? chatUsernameInput.value.trim() : '';
     if (username.length < 3) {
-      chatLoginError.textContent = 'El nombre de usuario debe tener al menos 3 caracteres.';
+      showMessage(chatLoginError, 'El identificador de agente debe tener al menos 3 caracteres.', 'error');
       return;
     }
     chatUsername = username;
-    chatLoginError.textContent = '';
-    showGroupChatScreen();
-    addChatMessage('Sistema', `${chatUsername} se ha unido al chat.`, 'system-message');
+    showScreen('groupChatScreen');
+    if (chatMessagesContainer) { // Añadido chequeo de existencia
+        chatMessagesContainer.innerHTML = ''; // Limpiar mensajes anteriores
+    }
+    chatMessages = []; // Resetear el historial de chat
+    appendChatMessage('Sistema', `Bienvenido al chat de operaciones, ${chatUsername}.`, 'system');
   }
 
-  function showGroupChatScreen() {
-    showScreen(groupChatScreen);
-    chatMessagesContainer.innerHTML = ''; // Limpiar mensajes anteriores
-    chatMessages.forEach(msg => {
-      addChatMessage(msg.sender, msg.message, msg.type);
-    });
-    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Scroll al final
-    chatMessageInput.focus();
-  }
+  function appendChatMessage(sender, message, type = 'other-message') {
+    if (!chatMessagesContainer) return; // Salir si el contenedor no existe
 
-  function addChatMessage(sender, message, type) {
     const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message');
-    if (type === 'own-message') {
-        messageElement.classList.add('own-message');
-    } else if (type === 'system-message') {
-        messageElement.classList.add('system-message');
-        messageElement.style.cssText = `
-            background: #202028;
-            color: var(--color-text-muted);
-            font-size: 0.85em;
-            text-align: center;
-            border: 1px dashed var(--color-border);
-            border-radius: 4px;
-            padding: 0.5rem;
-            margin: 0.5rem auto;
-            max-width: 90%;
-        `;
-        messageElement.innerHTML = `<em>${message}</em>`;
-    } else {
-        messageElement.classList.add('other-message');
-    }
+    messageElement.classList.add('chat-message', type);
 
-    if (type !== 'system-message') {
-        messageElement.innerHTML = `<span class="message-sender">${sender}:</span> <span>${message}</span>`;
-    }
+    const senderElement = document.createElement('span');
+    senderElement.classList.add('message-sender');
+    senderElement.textContent = sender;
+    messageElement.appendChild(senderElement);
+
+    const textElement = document.createElement('p');
+    textElement.textContent = message;
+    messageElement.appendChild(textElement);
 
     chatMessagesContainer.appendChild(messageElement);
-    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Scroll al final
-    chatMessages.push({ sender, message, type }); // Guardar en el array para re-renderizar
+    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Scroll automático
+    chatMessages.push({ sender, message, type }); // Guardar para historial simulado
   }
 
   function sendChatMessage() {
-    const message = chatMessageInput.value.trim();
-    if (message) {
-      addChatMessage(chatUsername, message, 'own-message');
-      chatMessageInput.value = '';
-      // Simular respuesta de otro usuario (opcional)
-      setTimeout(() => {
-        if (Math.random() > 0.5) {
-          addChatMessage('Agente IA', `Recibido: "${message}"`, 'other-message');
-        }
-      }, 1500);
+    const message = chatMessageInput ? chatMessageInput.value.trim() : '';
+    if (message.length === 0) return;
+
+    appendChatMessage(chatUsername, message, 'own-message');
+    if (chatMessageInput) { // Añadido chequeo de existencia
+        chatMessageInput.value = '';
     }
+
+    // Simular respuesta del sistema o de otro agente
+    setTimeout(() => {
+      const responses = [
+        "Mensaje recibido. Procesando solicitud...",
+        "Entendido, Agente. Reconfigurando parámetros.",
+        "Confirmado. El equipo está en ello.",
+        "Negativo, Agente. Se requiere más información.",
+        "Afirmativo. Operación en curso."
+      ];
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      appendChatMessage('Sistema', randomResponse, 'other-message');
+    }, 1500);
   }
 
 
   // --- Inicialización y Event Listeners ---
   document.addEventListener('DOMContentLoaded', () => {
-    showLogin(); // Mostrar la pantalla de login al cargar la página
-  });
+    // Inicializar el sistema mostrando la pantalla de login
+    showLogin();
 
-  loginBtn.addEventListener('click', login);
-  usernameInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') passwordInput.focus();
-  });
-  passwordInput.addEventListener('keydown', e => {
-    if (e.key === 'Enter') loginBtn.click();
-  });
+    if (loginBtn) { // Añadido chequeo de existencia
+      loginBtn.addEventListener('click', login);
+    }
+    if (usernameInput) { // Añadido chequeo de existencia
+      usernameInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+              login();
+          }
+      });
+    }
+    if (passwordInput) { // Añadido chequeo de existencia
+      passwordInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+              login();
+          }
+      });
+    }
 
-  logoutBtn.addEventListener('click', logout);
-  backToMenuBtn.addEventListener('click', () => {
-    stopTimer(); // Asegúrate de detener el temporizador si el usuario sale del juego antes de tiempo
-    showMenu();
-  });
-  backToMenuFromStatsBtn.addEventListener('click', showMenu);
-  backToMenuFromGenerateTestBtn.addEventListener('click', showMenu);
-  backToMenuFromChatLoginBtn.addEventListener('click', showMenu);
-  backToMenuFromGroupChatBtn.addEventListener('click', showMenu);
+    if (logoutBtn) { logoutBtn.addEventListener('click', showLogin); }
+    if (backToMenuBtn) { backToMenuBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
+    if (backToMenuFromStatsBtn) { backToMenuFromStatsBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
+    if (backToMenuFromGenerateTestBtn) { backToMenuFromGenerateTestBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
+    if (backToMenuFromChatLoginBtn) { backToMenuFromChatLoginBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
+    if (backToMenuFromGroupChatBtn) { backToMenuFromGroupChatBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
 
+    if (gameJefeDirectorCard) { gameJefeDirectorCard.addEventListener('click', () => startGame('jefeDirector')); }
+    if (gameLOEXCard) { gameLOEXCard.addEventListener('click', () => startGame('loex')); }
+    if (gameLO42010Card) { gameLO42010Card.addEventListener('click', () => startGame('lo42010')); }
+    if (gameStatsCard) { gameStatsCard.addEventListener('click', showStats); }
+    if (gameGenerateTestCard) { gameGenerateTestCard.addEventListener('click', showGenerateTest); }
+    if (gameChatCard) { gameChatCard.addEventListener('click', showChatLogin); }
 
-  gameJefeDirectorCard.addEventListener('click', () => startGame('jefeDirector'));
-  gameLOEXCard.addEventListener('click', () => startGame('loex'));
-  gameLO42010Card.addEventListener('click', () => startGame('lo42010'));
-  gameStatsCard.addEventListener('click', showStatistics);
-  gameGenerateTestCard.addEventListener('click', showGenerateTestScreen);
-  gameChatCard.addEventListener('click', showChatLoginScreen);
-
-  generateTestBtn.addEventListener('click', generateTest);
-
-  connectChatBtn.addEventListener('click', connectToChat);
-  chatUsernameInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter') connectChatBtn.click();
-  });
-
-  sendChatMessageBtn.addEventListener('click', sendChatMessage);
-  chatMessageInput.addEventListener('keydown', e => {
-    if(e.key === 'Enter') sendChatMessageBtn.click();
-  });
-
-  prevBtn.addEventListener('click', () => {
-    if(currentQuestionIndex > 0) {
-      currentQuestionIndex--;
-      renderQuestion();
+    if (prevBtn) { prevBtn.addEventListener('click', showPreviousQuestion); }
+    if (nextBtn) { nextBtn.addEventListener('click', showNextQuestion); }
+    if (generateTestBtn) { generateTestBtn.addEventListener('click', generateCustomTest); }
+    if (connectChatBtn) { connectChatBtn.addEventListener('click', connectChat); }
+    if (sendChatMessageBtn) { sendChatMessageBtn.addEventListener('click', sendChatMessage); }
+    if (chatMessageInput) { // Añadido chequeo de existencia
+      chatMessageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          sendChatMessage();
+        }
+      });
     }
   });
-  nextBtn.addEventListener('click', () => {
-    // La lógica de nextBtn ha sido modificada en updateNavigationButtons
-    // para manejar el "Finalizar Test" dinámicamente.
-    // Aquí solo llamamos a la función asignada por updateNavigationButtons.
-    nextBtn.onclick();
-  });
 
-
-})();
+})(); // Fin de la IIFE (Immediately Invoked Function Expression)
 </script>
-<style type="text/css">
-.grande { font-size: 60px; }
-</style>
-<script>
-// Escribir aqui el código Javascript
-</script>
-</head>
-<body>
-  <div id="loginScreen" class="screen">
-    <h1>PULIPOL</h1>
-    <input type="text" id="username" placeholder="Usuario">
-    <input type="password" id="password" placeholder="Contraseña">
-    <p id="loginError" class="error-message"></p>
-    <button id="loginBtn">ACCEDER AL SISTEMA</button>
-  </div>
-
-  <div id="menuScreen" class="screen hidden">
-    <div class="topbar">
-      <span class="welcome-text">Bienvenido a Pulipol</span>
-      <button id="logoutBtn">Cerrar Sesión</button>
-    </div>
-    <div class="game-list">
-      <div class="game-card" id="gameJefeDirector" tabindex="0">
-        <span class="icon">👮‍♂️</span>
-        <div class="content">
-          <span class="title">Jefe y Director de Seguridad Privada</span>
-          <p>Pon a prueba tus conocimientos sobre roles de seguridad.</p>
-        </div>
-      </div>
-      <div class="game-card" id="gameLOEX" tabindex="0">
-        <span class="icon">⚖️</span>
-        <div class="content">
-          <span class="title">Infracciones LOEX</span>
-          <p>Identifica el tipo de infracción según la LOEX.</p>
-        </div>
-      </div>
-      <div class="game-card" id="gameLO42010" tabindex="0">
-        <span class="icon">📜</span>
-        <div class="content">
-          <span class="title">Infracciones L.O 4/2010</span>
-          <p>Identifica las infracciones según la Ley Orgánica 4/2010.</p>
-        </div>
-      </div>
-      <div class="game-card" id="gameStats" tabindex="0">
-        <span class="icon">📈</span>
-        <div class="content">
-          <span class="title">Estadísticas de Fallos</span>
-          <p>Revisa las preguntas que has fallado para mejorar.</p>
-        </div>
-      </div>
-      <div class="game-card" id="gameGenerateTest" tabindex="0">
-        <span class="icon">📝</span>
-        <div class="content">
-          <span class="title">Generar Test Personalizado</span>
-          <p>Crea exámenes a medida con tus propios ajustes.</p>
-        </div>
-      </div>
-      <div class="game-card" id="gameChat" tabindex="0">
-        <span class="icon">💬</span>
-        <div class="content">
-          <span class="title">Chat de Operaciones (Simulado)</span>
-          <p>Conéctate a una sala de chat segura para coordinar.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="gameScreen" class="screen hidden">
-    <div class="topbar">
-      <h2 id="gameTitle"></h2>
-      <span id="timerDisplay" class="timer hidden">00:00</span>
-      <button id="backToMenuBtn">Menú</button>
-    </div>
-    <div id="gameContent">
-      <p id="questionText"></p>
-      <div id="choicesContainer">
-        </div>
-      <p id="resultMessage"></p>
-      <p id="finalScore" class="hidden"></p>
-      <div id="navButtons">
-        <button id="prevBtn">← ANTERIOR</button>
-        <button id="nextBtn">SIGUIENTE →</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="statsScreen" class="screen hidden">
-    <div class="topbar">
-      <h2>Registro de Errores</h2>
-      <button id="backToMenuFromStatsBtn">Menú</button>
-    </div>
-    <div id="statsContent">
-      </div>
-  </div>
-
-  <div id="generateTestScreen" class="screen hidden">
-    <div class="topbar">
-      <h2>Configuración de Prueba</h2>
-      <button id="backToMenuFromGenerateTestBtn">Menú</button>
-    </div>
-    <div class="form-container">
-      <div class="form-group">
-        <label>Selecciona módulos de evaluación:</label>
-        <div class="checkbox-group">
-          <label><input type="checkbox" id="jefeDirectorCheckbox"> Jefe y Director de Seguridad</label>
-          <label><input type="checkbox" id="loexCheckbox"> Infracciones LOEX</label>
-          <label><input type="checkbox" id="lo42010Checkbox"> Infracciones L.O 4/2010</label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="numQuestions">Número de preguntas:</label>
-        <input type="number" id="numQuestions" value="10" min="1">
-      </div>
-      <div class="form-group">
-        <label for="testTime">Tiempo límite (minutos):</label>
-        <input type="number" id="testTime" value="10" min="1">
-      </div>
-      <p id="generateTestError" class="error-message"></p>
-      <div class="button-container">
-        <button id="generateTestBtn">INICIAR EVALUACIÓN</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="chatLoginScreen" class="screen hidden">
-    <div class="topbar">
-      <h2>Acceso al Chat de Operaciones</h2>
-      <button id="backToMenuFromChatLoginBtn">Menú</button>
-    </div>
-    <div class="form-group">
-      <label for="chatUsernameInput">Identificador de Agente:</label>
-      <input type="text" id="chatUsernameInput" placeholder="Ej: Agente_007">
-    </div>
-    <p id="chatLoginError" class="error-message"></p>
-    <button id="connectChatBtn">CONECTAR</button>
-  </div>
-
-  <div id="groupChatScreen" class="screen hidden">
-    <div class="topbar">
-      <h2>Comunicación Segura <span class="badge">ACTIVO</span></h2>
-      <button id="backToMenuFromGroupChatBtn">Menú</button>
-    </div>
-    <div id="chatMessages">
-      </div>
-    <div class="chat-input-area">
-      <input type="text" id="chatMessageInput" placeholder="Escriba aquí su informe...">
-      <button id="sendChatMessageBtn">ENVIAR</button>
-    </div>
-  </div>
-
-
-</body></html>
+</body>
+</html>
