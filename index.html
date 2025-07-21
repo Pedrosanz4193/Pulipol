@@ -55,7 +55,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('data:image/svg+xml;base64,PHN2ZyB2aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjUiIG51bU9jdGF2ZXM9IjMiIHNlYW09InRydWUiIGxpbWl0aW5nPSIxIi8+PHdlc0RpZXJlY3QgeD0iMTAwIiB5PSIxMDAiIHJlc3VsdD0iaSIvPjxwYXRoIGQ9Ik0wIDBoMjAwdi0yMDBoMjAwdi0yMDAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMDAwIiBmaWx0ZXI9InVybCgjbikiIG9wYWNpdHk9Ii4xIi8+PC9zdmc+') repeat;
+    background: url('data:image/svg+xml;base64,PHN2ZyB2aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJibHVuY2UgdHlwZT0iZnJhY3RhbE5vaXNlIiBiYXNlRnJlcXVlbmN5PSIuNSIgbnVtT2N0YXZlcz0iMyIgc2VhbT0idHJ1ZSIgbGltaXRpbmc9IjEiLz48d2VzRGlmZnVzZSB4PSIxMDAiIHk9IjEwMCIgcmVzdWx0PSJpIi8+PHBhdGggZD0iTTAgMGgyMDB2LTIwMGgyMDB2LTIwMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwMDAiIGZpbHRlcj0idXJsKCNuKSIgb3BhY2l0eT0iLjEiLz48L3N2Zz4=') repeat;
     opacity: 0.1;
     pointer-events: none;
     z-index: -1;
@@ -711,21 +711,172 @@
   }
 
 </style>
+</head>
+<body>
+  <div id="loginScreen" class="screen">
+    <h1>PULIPOL</h1>
+    <input type="text" id="usernameInput" placeholder="Usuario">
+    <input type="password" id="passwordInput" placeholder="Contraseña">
+    <p id="loginError" class="error-message"></p>
+    <button id="loginBtn">ACCEDER AL SISTEMA</button>
+  </div>
+
+  <div id="menuScreen" class="screen hidden">
+    <div class="topbar">
+      <span class="welcome-text">Bienvenido a Pulipol</span>
+      <button id="logoutBtn">Cerrar Sesión</button>
+    </div>
+    <div class="game-list">
+      <div class="game-card" id="gameJefeDirector" tabindex="0">
+        <span class="icon">👮‍♂️</span>
+        <div class="content">
+          <span class="title">Jefe y Director de Seguridad Privada</span>
+          <p>Pon a prueba tus conocimientos sobre roles de seguridad.</p>
+        </div>
+      </div>
+      <div class="game-card" id="gameLOEX" tabindex="0">
+        <span class="icon">⚖️</span>
+        <div class="content">
+          <span class="title">Infracciones LOEX</span>
+          <p>Identifica el tipo de infracción según la LOEX.</p>
+        </div>
+      </div>
+      <div class="game-card" id="gameLO42010" tabindex="0">
+        <span class="icon">📜</span>
+        <div class="content">
+          <span class="title">Infracciones L.O 4/2010</span>
+          <p>Identifica las infracciones según la Ley Orgánica 4/2010.</p>
+        </div>
+      </div>
+      <div class="game-card" id="gameStats" tabindex="0">
+        <span class="icon">📈</span>
+        <div class="content">
+          <span class="title">Estadísticas de Fallos</span>
+          <p>Revisa las preguntas que has fallado para mejorar.</p>
+        </div>
+      </div>
+      <div class="game-card" id="gameGenerateTest" tabindex="0">
+        <span class="icon">📝</span>
+        <div class="content">
+          <span class="title">Generar Test Personalizado</span>
+          <p>Crea exámenes a medida con tus propios ajustes.</p>
+        </div>
+      </div>
+      <div class="game-card" id="gameChat" tabindex="0">
+        <span class="icon">💬</span>
+        <div class="content">
+          <span class="title">Chat de Operaciones (Simulado)</span>
+          <p>Conéctate a una sala de chat segura para coordinar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="gameScreen" class="screen hidden">
+    <div class="topbar">
+      <h2 id="gameTitle"></h2>
+      <span id="timerDisplay" class="timer hidden">00:00</span>
+      <button id="backToMenuBtn">Menú</button>
+    </div>
+    <div id="gameContent">
+      <p id="questionText"></p>
+      <div id="choicesContainer">
+        </div>
+      <p id="resultMessage"></p>
+      <p id="finalScore" class="hidden"></p>
+      <div id="navButtons">
+        <button id="prevBtn">← ANTERIOR</button>
+        <button id="nextBtn">SIGUIENTE →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="statsScreen" class="screen hidden">
+    <div class="topbar">
+      <h2>Registro de Errores</h2>
+      <button id="backToMenuFromStatsBtn">Menú</button>
+    </div>
+    <div id="statsContent">
+      </div>
+  </div>
+
+  <div id="generateTestScreen" class="screen hidden">
+    <div class="topbar">
+      <h2>Configuración de Prueba</h2>
+      <button id="backToMenuFromGenerateTestBtn">Menú</button>
+    </div>
+    <div class="form-container">
+      <div class="form-group">
+        <label>Selecciona módulos de evaluación:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="jefeDirectorCheckbox"> Jefe y Director de Seguridad</label>
+          <label><input type="checkbox" id="loexCheckbox"> Infracciones LOEX</label>
+          <label><input type="checkbox" id="lo42010Checkbox"> Infracciones L.O 4/2010</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="numQuestions">Número de preguntas:</label>
+        <input type="number" id="numQuestions" value="10" min="1">
+      </div>
+      <div class="form-group">
+        <label for="testTime">Tiempo límite (minutos):</label>
+        <input type="number" id="testTime" value="10" min="1">
+      </div>
+      <p id="generateTestError" class="error-message"></p>
+      <div class="button-container">
+        <button id="generateTestBtn">INICIAR EVALUACIÓN</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="chatLoginScreen" class="screen hidden">
+    <div class="topbar">
+      <h2>Acceso al Chat de Operaciones</h2>
+      <button id="backToMenuFromChatLoginBtn">Menú</button>
+    </div>
+    <div class="form-group">
+      <label for="chatUsernameInput">Identificador de Agente:</label>
+      <input type="text" id="chatUsernameInput" placeholder="Ej: Agente_007">
+    </div>
+    <p id="chatLoginError" class="error-message"></p>
+    <button id="connectChatBtn">CONECTAR</button>
+  </div>
+
+  <div id="groupChatScreen" class="screen hidden">
+    <div class="topbar">
+      <h2>Comunicación Segura <span class="badge">ACTIVO</span></h2>
+      <button id="backToMenuFromGroupChatBtn">Menú</button>
+    </div>
+    <div id="chatMessages">
+      </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatMessageInput" placeholder="Escriba aquí su informe...">
+      <button id="sendChatMessageBtn">ENVIAR</button>
+    </div>
+  </div>
+
 <script>
   (() => {
   'use strict';
 
   // --- Elementos del DOM ---
   const loginScreen = document.getElementById('loginScreen');
-  const usernameInput = document.getElementById('usernameInput'); // CORREGIDO
-  const passwordInput = document.getElementById('passwordInput'); // CORREGIDO
+  const usernameInput = document.getElementById('usernameInput');
+  const passwordInput = document.getElementById('passwordInput');
   const loginBtn = document.getElementById('loginBtn');
   const loginError = document.getElementById('loginError');
+
+  // Logs para depuración inicial de elementos
+  console.log('DEBUG: loginScreen:', loginScreen);
+  console.log('DEBUG: usernameInput:', usernameInput);
+  console.log('DEBUG: passwordInput:', passwordInput);
+  console.log('DEBUG: loginBtn:', loginBtn);
+  console.log('DEBUG: loginError:', loginError);
 
   const menuScreen = document.getElementById('menuScreen');
   const logoutBtn = document.getElementById('logoutBtn');
   const gameJefeDirectorCard = document.getElementById('gameJefeDirector');
-  const gameLOEXCard = document.getElementById('gameLOEX');
+  const gameLOEXCard = document.getElementById('gameLOEX'); // CORREGIDO: Eliminado el 'document =' extra
   const gameLO42010Card = document.getElementById('gameLO42010');
   const gameStatsCard = document.getElementById('gameStats');
   const gameGenerateTestCard = document.getElementById('gameGenerateTest');
@@ -770,7 +921,7 @@
 
   // --- Variables de Estado del Juego ---
   let loggedInUser = null;
-  let currentScreen = loginScreen;
+  let currentScreen = null; // Se inicializará en showLogin
   let currentGameType = null;
   let currentQuestions = [];
   let currentQuestionIndex = 0;
@@ -865,6 +1016,7 @@
         ["El acoso sexual y el acoso laboral, consistente este último en la realización reiterada, en el marco de una relación de servicio, de actos de acoso psicológico u hostilidad.", "Muy Grave"],
         ["La obstaculización grave al ejercicio de las libertades públicas y derechos sindicales.", "Muy Grave"],
         ["Las infracciones tipificadas como muy graves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Muy Grave"],
+
         // Faltas Graves
         ["La grave desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones o cuando cause descrédito notorio a la Institución Policial.", "Grave"],
         ["La desobediencia a los superiores jerárquicos o los responsables del servicio con motivo de las órdenes o instrucciones legítimas dadas por aquéllos, salvo que constituyan infracción manifiesta del ordenamiento jurídico.", "Grave"],
@@ -873,30 +1025,45 @@
         ["La tercera falta injustificada de asistencia al servicio en un período de tres meses cuando las dos anteriores hubieran sido objeto de sanción firme por falta leve.", "Grave"],
         ["No prestar servicio, alegando supuesta enfermedad.", "Grave"],
         ["La falta de rendimiento reiterada que ocasione un perjuicio a los ciudadanos, a las entidades con personalidad jurídica o a la eficacia de los servicios.", "Grave"],
-        ["El abuso de atribuciones cuando no constituya falta muy grave.", "Grave"],
-        ["La desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones.", "Grave"],
-        ["El incumplimiento de órdenes o instrucciones legítimas dadas por los superiores o responsables del servicio, salvo que constituyan infracción manifiesta del ordenamiento jurídico.", "Grave"],
-        ["El incumplimiento de la obligación de dar cuenta a la superioridad con la debida diligencia de todo asunto que por su entidad requiera su conocimiento o decisión urgente.", "Grave"],
-        ["El abandono de servicio sin causa justificada, cuando no constituya falta muy grave.", "Grave"],
-        ["La utilización de emblemas, uniformes o distintivos de la Institución Policial sin autorización, o su uso indebido.", "Grave"],
-        ["El consumo de bebidas alcohólicas durante el servicio o en estado de embriaguez, si no constituye falta muy grave.", "Grave"],
-        ["La falta de colaboración con otros miembros de las Fuerzas y Cuerpos de Seguridad, cuando no resulte gravemente perjudicado el servicio o se deriven consecuencias graves para la seguridad ciudadana.", "Grave"],
-        ["La divulgación de asuntos o informaciones de la Institución Policial que no hayan sido previamente autorizados para su publicación.", "Grave"],
-        ["La participación en juegos de azar o apuestas durante el servicio, si no constituyen delito.", "Grave"],
-        ["El incumplimiento de las normas sobre incompatibilidades, cuando no dé lugar a una situación de incompatibilidad.", "Grave"],
-        ["La reiteración en faltas leves.", "Grave"],
-        ["La inobservancia de la obligación de poner en conocimiento de la superioridad los cambios de domicilio, de situación familiar o de cualquier otra circunstancia personal que afecte al servicio.", "Grave"],
-        ["El no hallarse en condiciones psicofísicas adecuadas para el desempeño del servicio, cuando ello sea imputable al funcionario y no constituya falta muy grave.", "Grave"],
-        ["Las infracciones tipificadas como graves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Grave"],
-        // Faltas Leves
-        ["La ligera desconsideración con los superiores, compañeros, subordinados o ciudadanos, en el ejercicio de sus funciones.", "Leve"],
-        ["El retraso o la negligencia en el cumplimiento de los deberes, cuando no constituya falta grave o muy grave.", "Leve"],
-        ["La incorrección con el público o con los compañeros o subordinados.", "Leve"],
-        ["El incumplimiento injustificado del horario de trabajo, cuando no constituya falta grave.", "Leve"],
-        ["La falta de aseo y compostura personal.", "Leve"],
-        ["La no utilización del uniforme reglamentario o su uso incorrecto, cuando así se establezca.", "Leve"],
-        ["El descuido en la conservación de los útiles, mobiliario o material de la Institución Policial.", "Leve"],
-        ["Las infracciones tipificadas como leves en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos.", "Leve"]
+        ["El abuso de atribuciones cuando no constituya infracción muy grave.", "Grave"],
+        ["La emisión de informes sobre asuntos de servicio que, sin faltar abiertamente a la verdad, la desnaturalicen, valiéndose de términos ambiguos, confusos o tendenciosos, o la alteren mediante inexactitudes, cuando se cause perjuicio a la Administración o a los ciudadanos, siempre que el hecho no constituya delito o falta muy grave.", "Grave"],
+        ["La intervención en un procedimiento administrativo cuando concurra alguna de las causas legales de abstención.", "Grave"],
+        ["No ir provisto en los actos de servicio del uniforme reglamentario, cuando su uso sea preceptivo, de los distintivos de la categoría o cargo, del arma reglamentaria o de los medios de protección o acción que se determinen, siempre que no medie autorización en contrario.", "Grave"],
+        ["Exhibir armas sin causa justificada, así como utilizarlas en acto de servicio o fuera de él infringiendo las normas que regulan su empleo.", "Grave"],
+        ["Dar lugar al extravío, pérdida o sustracción por negligencia inexcusable de los distintivos de identificación o del arma reglamentaria.", "Grave"],
+        ["Asistir de uniforme a cualquier manifestación o reunión pública, salvo que se trate de actos de servicio, o actos oficiales en los que la asistencia de uniforme esté indicada o haya sido autorizada.", "Grave"],
+        ["Causar, por negligencia inexcusable, daños graves en la conservación de los locales, del material o de los demás elementos relacionados con el servicio o dar lugar al extravío, la pérdida o la sustracción de estos.", "Grave"],
+        ["Impedir, limitar u obstaculizar a los subordinados el ejercicio de los derechos que tengan reconocidos, siempre que no constituya falta muy grave.", "Grave"],
+        ["Embriagarse o consumir drogas tóxicas, estupefacientes o sustancias psicotrópicas fuera del servicio, cuando tales circunstancias tengan carácter habitual o afecten a la imagen del Cuerpo Nacional de Policía. Se entenderá que existe habitualidad cuando estuvieren acreditados tres o más episodios de embriaguez o consumo de las sustancias referidas en un periodo de un año.", "Grave"],
+        ["La tenencia de drogas tóxicas, estupefacientes o sustancias psicotrópicas, excepto que esa tenencia se derive de actuaciones propias del servicio.", "Grave"],
+        ["Solicitar y obtener cambios de destino mediando cualquier recompensa, ánimo de lucro o falseando las condiciones que los regulan.", "Grave"],
+        ["Emplear, o autorizar la utilización para usos no relacionados con el servicio o con ocasión de este, o sin que medie causa justificada, de medios o recursos inherentes a la función policial.", "Grave"],
+        ["Las infracciones a lo dispuesto en la legislación sobre utilización de videocámaras por las Fuerzas y Cuerpos de Seguridad en lugares públicos, no constitutivas de falta muy grave.", "Grave"],
+        ["El incumplimiento de los plazos u otras disposiciones de procedimiento en materia de incompatibilidades, cuando no supongan mantenimiento de una situación de incompatibilidad.", "Grave"],
+        ["La violación del secreto profesional cuando no perjudique el desarrollo de la labor policial, a las entidades con personalidad jurídica o a cualquier ciudadano.", "Grave"],
+        ["La falta de colaboración manifiesta con otros miembros de los Cuerpos y Fuerzas de Seguridad, siempre que no merezca la calificación de falta muy grave.", "Grave"],
+        ["La infracción de deberes u obligaciones legales inherentes al cargo o a la función policial, cuando se produzcan de forma grave y manifiesta.", "Grave"],
+        ["Haber sido condenado en virtud de sentencia firme por un delito doloso, siempre que no constituya infracción muy grave, o por una falta dolosa cuando la infracción penal cometida esté relacionada con el servicio.", "Grave"],
+        ["La no prestación de auxilio con urgencia en aquellos hechos o circunstancias graves en que sea obligada su actuación, salvo que constituya delito.", "Grave"],
+        ["La infracción de las normas de prevención de riesgos laborales que pongan en grave riesgo la vida, salud, o integridad física, propia o de sus compañeros o subordinados.", "Grave"],
+        ["La negativa reiterada a tramitar cualquier solicitud, reclamación o queja relacionada con el servicio, siempre que no constituya falta leve.", "Grave"],
+        ["Aquellas acciones u omisiones tipificadas como faltas muy graves que, de acuerdo con los criterios que se establecen en el artículo 12, merezcan la calificación de graves, y sin que estas a su vez puedan ser calificadas como faltas leves.", "Grave"],
+
+        // Faltas Leves (retomadas de la versión anterior)
+        ["El retraso o la negligencia en el cumplimiento de las funciones y órdenes recibidas.", "Leve"],
+        ["La incorrección con los ciudadanos, o con otros miembros de los Cuerpos y Fuerzas de Seguridad, siempre que no merezcan una calificación más grave.", "Leve"],
+        ["La inasistencia al servicio que no constituya falta de mayor gravedad y el incumplimiento de la jornada de trabajo, así como las faltas repetidas de puntualidad, en los 30 días precedentes.", "Leve"],
+        ["El mal uso o el descuido en la conservación de los locales, del material o de los demás elementos de los servicios, así como el incumplimiento de las normas dadas en esta materia, cuando no constituya falta más grave.", "Leve"],
+        ["Dar lugar al extravío, pérdida o sustracción por simple negligencia, de los distintivos de identificación, del arma reglamentaria u otros medios o recursos destinados a la función policial.", "Leve"],
+        ["La exhibición de los distintivos de identificación sin causa justificada.", "Leve"],
+        ["Prescindir del conducto reglamentario para formular cualquier solicitud, reclamación o queja relacionada con el servicio, así como no tramitar las mismas. Quedan exceptuadas del conducto reglamentario aquellas que se formulen por los representantes de las organizaciones sindicales en el ejercicio de la actividad sindical.", "Leve"],
+        ["El descuido en el aseo personal y el incumplimiento de las normas sobre la uniformidad, siempre que no constituya falta grave.", "Leve"],
+        ["La ausencia injustificada de cualquier servicio, cuando no merezca calificación más grave.", "Leve"],
+        ["La omisión intencionada de saludo a un superior, que éste no lo devuelva o infringir de otro modo las normas que lo regulan.", "Leve"],
+        ["Cualquier clase de juego que se lleve a cabo en las dependencias policiales, siempre que perjudique la prestación del servicio o menoscabe la imagen policial.", "Leve"],
+        ["Ostentar insignias, condecoraciones u otros distintivos, sin estar autorizado para ello, siempre que no merezca una calificación más grave.", "Leve"],
+        ["Haber sido condenado en virtud de sentencia firme por una falta dolosa cuando la infracción penal cometida cause daño a la Administración o a los Administrados.", "Leve"],
+        ["Aquellas acciones u omisiones tipificadas como faltas graves que, de acuerdo con los criterios que se establecen en el artículo 12, merezcan la calificación de leves.", "Leve"]
       ],
       choices: ["Leve", "Grave", "Muy Grave"]
     }
@@ -904,172 +1071,232 @@
 
   // --- Funciones de Utilidad ---
   function showScreen(screenId) {
+    console.log('DEBUG: showScreen called for:', screenId);
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => {
-      if (screen) { // Añadido chequeo de existencia
+      if (screen) {
         screen.classList.add('hidden');
       }
     });
     const targetScreen = document.getElementById(screenId);
-    if (targetScreen) { // Añadido chequeo de existencia
+    if (targetScreen) {
       targetScreen.classList.remove('hidden');
+      currentScreen = targetScreen; // Actualizar la pantalla actual
+      console.log('DEBUG: Screen shown:', screenId);
+    } else {
+      console.error('ERROR: Target screen not found:', screenId);
     }
     // Asegurarse de que el scroll esté arriba al cambiar de pantalla
-    if (targetScreen && targetScreen.id !== 'gameScreen') { // Evitar scroll en gameScreen para mantener posición
+    if (targetScreen && targetScreen.id !== 'gameScreen') {
         targetScreen.scrollTop = 0;
     }
   }
 
   function showMessage(element, message, type = 'error') {
-    if (element) { // Añadido chequeo de existencia
+    if (element) {
       element.textContent = message;
       element.className = 'error-message ' + type;
+      console.log(`DEBUG: Message displayed on ${element.id}: ${message} (Type: ${type})`);
+    } else {
+      console.error('ERROR: Element for showMessage not found.');
     }
   }
 
   function clearMessage(element) {
-    if (element) { // Añadido chequeo de existencia
+    if (element) {
       element.textContent = '';
       element.className = 'error-message'; // Restablece la clase base
+      console.log(`DEBUG: Message cleared on ${element.id}.`);
+    } else {
+      console.error('ERROR: Element for clearMessage not found.');
     }
   }
 
   // --- Funciones de Navegación y Lógica Principal ---
   function login() {
+    console.log('DEBUG: Login function called.');
     clearMessage(loginError);
-    const username = usernameInput ? usernameInput.value : '';
-    const password = passwordInput ? passwordInput.value : '';
+    const username = usernameInput ? usernameInput.value.trim() : '';
+    const password = passwordInput ? passwordInput.value.trim() : '';
+
+    console.log('DEBUG: Username entered:', username);
+    console.log('DEBUG: Password entered:', password ? '********' : ''); // No logear la contraseña real
 
     if (username === 'admin' && password === 'admin') {
+      console.log('DEBUG: Admin login successful.');
       loggedInUser = username;
       showMenu('Bienvenido, ' + loggedInUser);
+      // Mostrar tarjetas de admin si es necesario
+      if (gameStatsCard) gameStatsCard.style.display = 'flex';
+      if (gameGenerateTestCard) gameGenerateTestCard.style.display = 'flex';
+      if (gameChatCard) gameChatCard.style.display = 'flex';
+    } else if (username === 'user' && password === 'user') {
+      console.log('DEBUG: User login successful.');
+      loggedInUser = username;
+      showMenu('Bienvenido, ' + loggedInUser);
+      // Ocultar tarjetas de admin para usuarios normales
+      if (gameStatsCard) gameStatsCard.style.display = 'none';
+      if (gameGenerateTestCard) gameGenerateTestCard.style.display = 'none';
+      if (gameChatCard) gameChatCard.style.display = 'none';
     } else {
-      showMessage(loginError, 'Credenciales incorrectas.');
+      console.log('DEBUG: Login failed: Incorrect credentials.');
+      showMessage(loginError, 'Usuario o contraseña incorrectos. Intenta con "admin/admin" o "user/user".');
+      if (passwordInput) passwordInput.value = ''; // Limpiar contraseña al fallar
     }
   }
 
   function showMenu(welcomeText) {
+    console.log('DEBUG: showMenu called with:', welcomeText);
     showScreen('menuScreen');
     const welcomeDisplay = document.querySelector('#menuScreen .topbar .welcome-text');
-    if (welcomeDisplay) { // Añadido chequeo de existencia
+    if (welcomeDisplay) {
       welcomeDisplay.textContent = welcomeText;
+    } else {
+      console.error('ERROR: Welcome text element not found in menu screen.');
     }
   }
 
   function startGame(gameType) {
+    console.log('DEBUG: startGame called for type:', gameType);
     currentGameType = gameType;
     currentQuestions = generateQuestions(gameType, numQuestionsInput ? parseInt(numQuestionsInput.value) : 10);
     if (currentQuestions.length === 0) {
       showMessage(generateTestError, 'No se pudieron generar preguntas con los criterios seleccionados.');
+      console.error('ERROR: No questions generated for game type:', gameType);
       return;
     }
     currentQuestionIndex = 0;
     userAnswers = {};
     correctAnswersCount = 0;
     showScreen('gameScreen');
-    if (gameTitleDisplay) { // Añadido chequeo de existencia
+    if (gameTitleDisplay) {
         gameTitleDisplay.textContent = gameData[gameType].title;
+    } else {
+        console.error('ERROR: gameTitleDisplay element not found.');
     }
     startQuizTimer(testTimeInput ? parseInt(testTimeInput.value) : 10);
     displayQuestion();
   }
 
   function displayQuestion() {
+    console.log('DEBUG: displayQuestion called. Current index:', currentQuestionIndex);
     clearMessage(resultMessage);
     if (currentQuestions.length === 0) {
-      questionText.textContent = 'No hay preguntas disponibles.';
-      choicesContainer.innerHTML = '';
+      if (questionText) questionText.textContent = 'No hay preguntas disponibles.';
+      if (choicesContainer) choicesContainer.innerHTML = '';
       return;
     }
 
     const question = currentQuestions[currentQuestionIndex];
-    if (questionText) { // Añadido chequeo de existencia
+    if (questionText) {
         questionText.textContent = `${currentQuestionIndex + 1}. ${question[0]}`;
+    } else {
+        console.error('ERROR: questionText element not found.');
     }
 
-    if (choicesContainer) { // Añadido chequeo de existencia
+    if (choicesContainer) {
         choicesContainer.innerHTML = '';
-        gameData[currentGameType].choices.forEach((choice, index) => {
+        // Mezclar las opciones para cada pregunta
+        const shuffledChoices = shuffleArray([...gameData[currentGameType].choices]);
+        
+        shuffledChoices.forEach((choice, index) => {
             const button = document.createElement('button');
             button.textContent = choice;
-            button.onclick = () => selectAnswer(index);
+            button.dataset.choice = choice; // Guardar la opción en un dataset
+            button.onclick = () => selectAnswer(choice); // Pasar la opción seleccionada
             choicesContainer.appendChild(button);
         });
+    } else {
+        console.error('ERROR: choicesContainer element not found.');
     }
 
-    // Resaltar respuesta seleccionada previamente
+    // Resaltar respuesta seleccionada previamente y deshabilitar botones si ya se respondió
     if (userAnswers[currentQuestionIndex] !== undefined) {
       const buttons = choicesContainer ? choicesContainer.querySelectorAll('button') : [];
-      if (buttons[userAnswers[currentQuestionIndex]]) {
-        buttons[userAnswers[currentQuestionIndex]].classList.add('selected');
-      }
+      const selectedChoice = userAnswers[currentQuestionIndex];
+      const correctAnswer = currentQuestions[currentQuestionIndex][1];
+
+      buttons.forEach(button => {
+        button.disabled = true;
+        if (button.dataset.choice === correctAnswer) {
+          button.classList.add('correct');
+        } else if (button.dataset.choice === selectedChoice) {
+          button.classList.add('incorrect');
+        }
+      });
     }
 
     updateNavButtons();
   }
 
-  function selectAnswer(selectedIndex) {
+  function selectAnswer(selectedChoice) { // Recibe la opción directamente
+    console.log('DEBUG: selectAnswer called with:', selectedChoice);
     const question = currentQuestions[currentQuestionIndex];
-    const correctIndex = gameData[currentGameType].choices.indexOf(question[1]);
-
-    userAnswers[currentQuestionIndex] = selectedIndex;
+    const correctAnswer = question[1];
+    
+    userAnswers[currentQuestionIndex] = selectedChoice;
 
     const buttons = choicesContainer ? choicesContainer.querySelectorAll('button') : [];
-    buttons.forEach((button, index) => {
+    buttons.forEach(button => {
       button.disabled = true; // Deshabilita todos los botones una vez que se selecciona una respuesta
-      if (index === correctIndex) {
+      if (button.dataset.choice === correctAnswer) {
         button.classList.add('correct');
-      } else if (index === selectedIndex) {
+      } else if (button.dataset.choice === selectedChoice) {
         button.classList.add('incorrect');
       }
     });
 
-    if (selectedIndex === correctIndex) {
-      showMessage(resultMessage, '¡Correcto!', 'success');
+    if (selectedChoice === correctAnswer) {
+      showMessage(resultMessage, '¡Respuesta Correcta! ✅', 'success');
     } else {
-      showMessage(resultMessage, 'Incorrecto. La respuesta correcta era: ' + question[1], 'error');
+      showMessage(resultMessage, `Incorrecto. La respuesta correcta era: "${correctAnswer}" ❌`, 'error');
       // Registrar pregunta incorrecta
       const qKey = `${currentGameType}-${question[0]}`;
-      incorrectQuestionsStats[qKey] = (incorrectQuestionsStats[qKey] || 0) + 1;
+      // Almacenar la pregunta, la respuesta correcta y la respuesta del usuario
+      if (!incorrectQuestionsStats[qKey]) {
+          incorrectQuestionsStats[qKey] = {
+              questionText: question[0],
+              correctAnswer: correctAnswer,
+              timesFailed: 0
+          };
+      }
+      incorrectQuestionsStats[qKey].timesFailed++;
       localStorage.setItem('incorrectQuestionsStats', JSON.stringify(incorrectQuestionsStats));
     }
     updateNavButtons(); // Permite navegación inmediata si se selecciona respuesta
   }
 
   function updateNavButtons() {
-    if (prevBtn) { // Añadido chequeo de existencia
+    console.log('DEBUG: updateNavButtons called.');
+    if (prevBtn) {
       prevBtn.disabled = currentQuestionIndex === 0;
-    }
-    if (nextBtn) { // Añadido chequeo de existencia
-      nextBtn.disabled = currentQuestionIndex === currentQuestions.length - 1 && userAnswers[currentQuestionIndex] !== undefined;
-      // El botón "Siguiente" se deshabilita solo en la última pregunta si ya se respondió
-    }
-    // Si la última pregunta está respondida, el botón "Siguiente" debería ser "Finalizar"
-    if (nextBtn && currentQuestionIndex === currentQuestions.length - 1) {
-        if (userAnswers[currentQuestionIndex] !== undefined) {
-            nextBtn.textContent = 'FINALIZAR';
-            nextBtn.onclick = finishQuiz;
-        } else {
-            nextBtn.textContent = 'Siguiente';
-            nextBtn.onclick = showNextQuestion;
-        }
-    } else if (nextBtn) {
-        nextBtn.textContent = 'Siguiente';
+    } else { console.error('ERROR: prevBtn not found.'); }
+
+    if (nextBtn) {
+      if (currentQuestionIndex === currentQuestions.length - 1) {
+        nextBtn.textContent = 'Finalizar Test';
+        nextBtn.onclick = finishQuiz;
+        nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined; // Deshabilitar si no ha respondido la última
+      } else {
+        nextBtn.textContent = 'Siguiente →';
         nextBtn.onclick = showNextQuestion;
-    }
+        nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined; // Deshabilitar si no ha respondido la actual
+      }
+    } else { console.error('ERROR: nextBtn not found.'); }
   }
 
   function showNextQuestion() {
+    console.log('DEBUG: showNextQuestion called.');
     if (currentQuestionIndex < currentQuestions.length - 1) {
       currentQuestionIndex++;
       displayQuestion();
     } else {
-        // Si ya está en la última pregunta y el botón es "Siguiente", significa que no se ha respondido
-        // Si ya está en la última pregunta y el botón es "Finalizar", ya se manejó con finishQuiz
+        finishQuiz(); // Si es la última pregunta, finalizar
     }
   }
 
   function showPreviousQuestion() {
+    console.log('DEBUG: showPreviousQuestion called.');
     if (currentQuestionIndex > 0) {
       currentQuestionIndex--;
       displayQuestion();
@@ -1077,38 +1304,54 @@
   }
 
   function finishQuiz() {
-    clearInterval(quizInterval);
+    console.log('DEBUG: finishQuiz called.');
+    stopTimer(); // Asegurarse de detener el temporizador
     correctAnswersCount = 0;
-    currentQuestions.forEach((question, index) => {
-      const selectedAnswerIndex = userAnswers[index];
-      if (selectedAnswerIndex !== undefined) {
-        const correctAnswer = question[1];
-        const selectedChoice = gameData[currentGameType].choices[selectedAnswerIndex];
-        if (selectedChoice === correctAnswer) {
-          correctAnswersCount++;
-        }
+    for (let i = 0; i < currentQuestions.length; i++) {
+      const selectedAnswer = userAnswers[i];
+      if (selectedAnswer !== undefined && selectedAnswer === currentQuestions[i][1]) {
+        correctAnswersCount++;
       }
-    });
-
-    showScreen('gameResultsScreen'); // Asegúrate de que tienes una pantalla con este ID
-    if (finalScoreDisplay) { // Añadido chequeo de existencia
-        finalScoreDisplay.textContent = `Puntuación Final: ${correctAnswersCount} / ${currentQuestions.length}`;
     }
-    // Puedes añadir más lógica aquí para guardar resultados o mostrar detalles
+
+    if (finalScoreDisplay) {
+        finalScoreDisplay.textContent = `Test Finalizado. Puntuación: ${correctAnswersCount} / ${currentQuestions.length}`;
+        finalScoreDisplay.classList.remove('hidden');
+    } else { console.error('ERROR: finalScoreDisplay not found.'); }
+    
+    if (prevBtn) prevBtn.disabled = true;
+    if (nextBtn) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Finalizado';
+    }
   }
 
-  function startQuizTimer(minutes) {
+  function stopTimer() {
+    console.log('DEBUG: stopTimer called.');
     if (quizInterval) {
       clearInterval(quizInterval);
+      quizInterval = null;
     }
+    if (timerDisplay) {
+        timerDisplay.classList.add('hidden');
+    } else { console.error('ERROR: timerDisplay not found.'); }
+  }
+
+  function startQuizTimer(durationInMinutes) {
+    console.log('DEBUG: startQuizTimer called with duration:', durationInMinutes);
+    stopTimer(); // Asegurarse de que no haya un temporador anterior
     quizStartTime = Date.now();
-    const endTime = quizStartTime + minutes * 60 * 1000;
+    const endTime = quizStartTime + durationInMinutes * 60 * 1000;
+
+    if (timerDisplay) {
+        timerDisplay.classList.remove('hidden');
+    } else { console.error('ERROR: timerDisplay not found for starting timer.'); }
 
     quizInterval = setInterval(() => {
       const timeLeft = endTime - Date.now();
       if (timeLeft <= 0) {
         clearInterval(quizInterval);
-        if (timerDisplay) { // Añadido chequeo de existencia
+        if (timerDisplay) {
             timerDisplay.textContent = '00:00';
         }
         finishQuiz();
@@ -1118,44 +1361,65 @@
       const minutesLeft = Math.floor(totalSeconds / 60);
       const secondsLeft = totalSeconds % 60;
       const formattedTime = `${String(minutesLeft).padStart(2, '0')}:${String(secondsLeft).padStart(2, '0')}`;
-      if (timerDisplay) { // Añadido chequeo de existencia
+      if (timerDisplay) {
           timerDisplay.textContent = formattedTime;
       }
     }, 1000);
   }
 
   function showStats() {
+    console.log('DEBUG: showStats called.');
     showScreen('statsScreen');
-    if (statsContent) { // Añadido chequeo de existencia
-        statsContent.innerHTML = '<h3>Preguntas Falladas Frecuentemente</h3>';
-        const statsList = document.createElement('ul');
-        const sortedStats = Object.entries(incorrectQuestionsStats).sort(([, a], [, b]) => b - a);
+    if (statsContent) {
+        statsContent.innerHTML = ''; // Limpiar contenido anterior
+        let hasData = false;
+        for (const qKey in incorrectQuestionsStats) {
+            if (incorrectQuestionsStats.hasOwnProperty(qKey)) {
+                hasData = true;
+                const data = incorrectQuestionsStats[qKey];
+                const gameType = qKey.split('-')[0]; // Extraer el tipo de juego
+                const questionText = data.questionText;
+                const correctAnswer = data.correctAnswer;
+                const timesFailed = data.timesFailed;
 
-        if (sortedStats.length === 0) {
-            statsList.innerHTML = '<li class="no-data">No hay datos de preguntas falladas.</li>';
-        } else {
-            sortedStats.forEach(([question, count]) => {
+                const gameTitle = gameData[gameType] ? gameData[gameType].title : 'Desconocido';
+
+                let gameSection = document.getElementById(`stats-section-${gameType}`);
+                if (!gameSection) {
+                    gameSection = document.createElement('div');
+                    gameSection.id = `stats-section-${gameType}`;
+                    gameSection.innerHTML = `<h3>${gameTitle}</h3><ul></ul>`;
+                    statsContent.appendChild(gameSection);
+                }
+                const ul = gameSection.querySelector('ul');
                 const li = document.createElement('li');
-                li.innerHTML = `<strong>${question.split('-')[0]}:</strong> ${question.split('-')[1]} <br> <small>Fallada ${count} veces</small>`;
-                statsList.appendChild(li);
-            });
+                li.innerHTML = `<strong>Pregunta:</strong> ${questionText}<br>
+                                <strong>Respuesta Correcta:</strong> ${correctAnswer}<br>
+                                <strong>Veces Fallada:</strong> ${timesFailed} veces`;
+                ul.appendChild(li);
+            }
         }
-        statsContent.appendChild(statsList);
-    }
+
+        if (!hasData) {
+            statsContent.innerHTML = '<p class="no-data">Aún no hay preguntas falladas registradas.</p>';
+        }
+    } else { console.error('ERROR: statsContent not found.'); }
   }
 
   function showGenerateTest() {
+    console.log('DEBUG: showGenerateTest called.');
     showScreen('generateTestScreen');
     clearMessage(generateTestError);
     // Reiniciar checkboxes a un estado por defecto si es necesario
-    if (jefeDirectorCheckbox) jefeDirectorCheckbox.checked = true;
-    if (loexCheckbox) loexCheckbox.checked = true;
-    if (lo42010Checkbox) lo42010Checkbox.checked = true;
+    if (jefeDirectorCheckbox) jefeDirectorCheckbox.checked = false;
+    if (loexCheckbox) loexCheckbox.checked = false;
+    if (lo42010Checkbox) lo42010Checkbox.checked = false;
     if (numQuestionsInput) numQuestionsInput.value = 10;
     if (testTimeInput) testTimeInput.value = 10;
   }
 
   function generateCustomTest() {
+    console.log('DEBUG: generateCustomTest called.');
     clearMessage(generateTestError);
     const selectedTypes = [];
     if (jefeDirectorCheckbox && jefeDirectorCheckbox.checked) selectedTypes.push('jefeDirector');
@@ -1164,6 +1428,7 @@
 
     if (selectedTypes.length === 0) {
       showMessage(generateTestError, 'Selecciona al menos un tipo de juego.', 'error');
+      console.error('ERROR: No game types selected for custom test.');
       return;
     }
 
@@ -1172,10 +1437,12 @@
 
     if (isNaN(numQuestions) || numQuestions <= 0) {
       showMessage(generateTestError, 'Número de preguntas inválido.', 'error');
+      console.error('ERROR: Invalid number of questions:', numQuestions);
       return;
     }
     if (isNaN(testTime) || testTime <= 0) {
       showMessage(generateTestError, 'Tiempo límite inválido.', 'error');
+      console.error('ERROR: Invalid test time:', testTime);
       return;
     }
 
@@ -1183,33 +1450,37 @@
     let allPossibleQuestions = [];
     selectedTypes.forEach(type => {
       if (gameData[type] && gameData[type].questions) {
-        allPossibleQuestions = allPossibleQuestions.concat(gameData[type].questions.map(q => [q[0], q[1], type])); // Añadir tipo para seguimiento
+        allPossibleQuestions = allPossibleQuestions.concat(gameData[type].questions);
+      } else {
+          console.warn('WARNING: Game data not found for type:', type);
       }
     });
 
     if (allPossibleQuestions.length < numQuestions) {
       showMessage(generateTestError, `No hay suficientes preguntas (${allPossibleQuestions.length}) para generar un test de ${numQuestions} preguntas.`, 'error');
+      console.error('ERROR: Not enough questions available for custom test.');
       return;
     }
 
     // Mezclar y seleccionar un subconjunto de preguntas
-    const shuffledQuestions = allPossibleQuestions.sort(() => 0.5 - Math.random());
+    const shuffledQuestions = shuffleArray(allPossibleQuestions);
     const finalQuestions = shuffledQuestions.slice(0, numQuestions);
 
     // Iniciar el juego con las preguntas generadas
-    currentGameType = 'custom'; // Tipo de juego personalizado
-    gameData.custom = { // Definir un tipo de juego 'custom' temporalmente
+    currentGameType = 'test'; // Usar 'test' para el modo de prueba personalizada
+    gameData.test = { // Definir un tipo de juego 'test' temporalmente
         title: "Evaluación Personalizada",
         questions: finalQuestions,
-        choices: ["Leve", "Grave", "Muy Grave", "Jefe", "Director"] // Asegurarse de tener todas las opciones posibles
+        // Las opciones deben ser una combinación de todas las opciones posibles de los juegos seleccionados
+        choices: Array.from(new Set(selectedTypes.flatMap(type => gameData[type].choices)))
     };
 
-    startGame('custom');
+    startGame('test');
   }
 
   function generateQuestions(type, count) {
     if (!gameData[type] || !gameData[type].questions) {
-      console.error('Tipo de juego no encontrado:', type);
+      console.error('ERROR: Tipo de juego no encontrado en generateQuestions:', type);
       return [];
     }
     const allQuestions = gameData[type].questions;
@@ -1217,57 +1488,98 @@
     return shuffled.slice(0, count);
   }
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   // --- Funciones de Chat ---
   function showChatLogin() {
+    console.log('DEBUG: showChatLogin called.');
     showScreen('chatLoginScreen');
     clearMessage(chatLoginError);
-    if (chatUsernameInput) { // Añadido chequeo de existencia
+    if (chatUsernameInput) {
         chatUsernameInput.value = '';
     }
   }
 
   function connectChat() {
+    console.log('DEBUG: connectChat called.');
     clearMessage(chatLoginError);
     const username = chatUsernameInput ? chatUsernameInput.value.trim() : '';
     if (username.length < 3) {
       showMessage(chatLoginError, 'El identificador de agente debe tener al menos 3 caracteres.', 'error');
+      console.error('ERROR: Chat username too short.');
       return;
     }
     chatUsername = username;
     showScreen('groupChatScreen');
-    if (chatMessagesContainer) { // Añadido chequeo de existencia
+    if (chatMessagesContainer) {
         chatMessagesContainer.innerHTML = ''; // Limpiar mensajes anteriores
     }
     chatMessages = []; // Resetear el historial de chat
-    appendChatMessage('Sistema', `Bienvenido al chat de operaciones, ${chatUsername}.`, 'system');
+    appendChatMessage('Sistema', `Bienvenido al chat de operaciones, ${chatUsername}.`, 'system-message');
   }
 
   function appendChatMessage(sender, message, type = 'other-message') {
-    if (!chatMessagesContainer) return; // Salir si el contenedor no existe
+    if (!chatMessagesContainer) {
+        console.error('ERROR: chatMessagesContainer not found for appending message.');
+        return;
+    }
 
     const messageElement = document.createElement('div');
-    messageElement.classList.add('chat-message', type);
+    messageElement.classList.add('chat-message');
+    if (type === 'own-message') {
+        messageElement.classList.add('own-message');
+    } else if (type === 'system-message') {
+        messageElement.classList.add('system-message');
+        messageElement.style.cssText = `
+            background: #202028;
+            color: var(--color-text-muted);
+            font-size: 0.85em;
+            text-align: center;
+            border: 1px dashed var(--color-border);
+            border-radius: 4px;
+            padding: 0.5rem;
+            margin: 0.5rem auto;
+            max-width: 90%;
+        `;
+        messageElement.innerHTML = `<em>${message}</em>`;
+    } else {
+        messageElement.classList.add('other-message');
+    }
 
-    const senderElement = document.createElement('span');
-    senderElement.classList.add('message-sender');
-    senderElement.textContent = sender;
-    messageElement.appendChild(senderElement);
+    if (type !== 'system-message') {
+        const senderElement = document.createElement('span');
+        senderElement.classList.add('message-sender');
+        senderElement.textContent = sender;
+        
+        const textElement = document.createElement('span');
+        textElement.textContent = message;
 
-    const textElement = document.createElement('p');
-    textElement.textContent = message;
-    messageElement.appendChild(textElement);
+        messageElement.appendChild(senderElement);
+        messageElement.appendChild(textElement);
+    }
 
     chatMessagesContainer.appendChild(messageElement);
     chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight; // Scroll automático
     chatMessages.push({ sender, message, type }); // Guardar para historial simulado
+    console.log('DEBUG: Chat message appended:', {sender, message, type});
   }
 
   function sendChatMessage() {
+    console.log('DEBUG: sendChatMessage called.');
     const message = chatMessageInput ? chatMessageInput.value.trim() : '';
-    if (message.length === 0) return;
+    if (message.length === 0) {
+        console.warn('WARNING: Attempted to send empty chat message.');
+        return;
+    }
 
     appendChatMessage(chatUsername, message, 'own-message');
-    if (chatMessageInput) { // Añadido chequeo de existencia
+    if (chatMessageInput) {
         chatMessageInput.value = '';
     }
 
@@ -1288,53 +1600,60 @@
 
   // --- Inicialización y Event Listeners ---
   document.addEventListener('DOMContentLoaded', () => {
+    console.log('DEBUG: DOM Content Loaded. Initializing app.');
     // Inicializar el sistema mostrando la pantalla de login
-    showLogin();
+    showScreen('loginScreen'); // Usar showScreen para la primera visualización
 
-    if (loginBtn) { // Añadido chequeo de existencia
+    if (loginBtn) {
+      console.log('DEBUG: Attaching click listener to loginBtn.');
       loginBtn.addEventListener('click', login);
+    } else {
+      console.error('ERROR: Login button (loginBtn) not found!');
     }
-    if (usernameInput) { // Añadido chequeo de existencia
+    if (usernameInput) {
       usernameInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
+              console.log('DEBUG: Enter pressed on username input. Calling login().');
               login();
           }
       });
     }
-    if (passwordInput) { // Añadido chequeo de existencia
+    if (passwordInput) {
       passwordInput.addEventListener('keypress', (e) => {
           if (e.key === 'Enter') {
+              console.log('DEBUG: Enter pressed on password input. Calling login().');
               login();
           }
       });
     }
 
-    if (logoutBtn) { logoutBtn.addEventListener('click', showLogin); }
+    // Adjuntar listeners a los botones de navegación y tarjetas de juego
+    if (logoutBtn) { logoutBtn.addEventListener('click', () => { loggedInUser = null; localStorage.removeItem('incorrectQuestionsStats'); incorrectQuestionsStats = {}; showScreen('loginScreen'); console.log('DEBUG: Logged out.'); }); }
     if (backToMenuBtn) { backToMenuBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
     if (backToMenuFromStatsBtn) { backToMenuFromStatsBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
     if (backToMenuFromGenerateTestBtn) { backToMenuFromGenerateTestBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
     if (backToMenuFromChatLoginBtn) { backToMenuFromChatLoginBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
     if (backToMenuFromGroupChatBtn) { backToMenuFromGroupChatBtn.addEventListener('click', () => showMenu('Bienvenido, ' + (loggedInUser || 'Agente'))); }
 
-    if (gameJefeDirectorCard) { gameJefeDirectorCard.addEventListener('click', () => startGame('jefeDirector')); }
-    if (gameLOEXCard) { gameLOEXCard.addEventListener('click', () => startGame('loex')); }
-    if (gameLO42010Card) { gameLO42010Card.addEventListener('click', () => startGame('lo42010')); }
-    if (gameStatsCard) { gameStatsCard.addEventListener('click', showStats); }
-    if (gameGenerateTestCard) { gameGenerateTestCard.addEventListener('click', showGenerateTest); }
-    if (gameChatCard) { gameChatCard.addEventListener('click', showChatLogin); }
+    if (gameJefeDirectorCard) { gameJefeDirectorCard.addEventListener('click', () => startGame('jefeDirector')); } else { console.error('ERROR: gameJefeDirectorCard not found.'); }
+    if (gameLOEXCard) { gameLOEXCard.addEventListener('click', () => startGame('loex')); } else { console.error('ERROR: gameLOEXCard not found.'); }
+    if (gameLO42010Card) { gameLO42010Card.addEventListener('click', () => startGame('lo42010')); } else { console.error('ERROR: gameLO42010Card not found.'); }
+    if (gameStatsCard) { gameStatsCard.addEventListener('click', showStats); } else { console.error('ERROR: gameStatsCard not found.'); }
+    if (gameGenerateTestCard) { gameGenerateTestCard.addEventListener('click', showGenerateTest); } else { console.error('ERROR: gameGenerateTestCard not found.'); }
+    if (gameChatCard) { gameChatCard.addEventListener('click', showChatLogin); } else { console.error('ERROR: gameChatCard not found.'); }
 
-    if (prevBtn) { prevBtn.addEventListener('click', showPreviousQuestion); }
-    if (nextBtn) { nextBtn.addEventListener('click', showNextQuestion); }
-    if (generateTestBtn) { generateTestBtn.addEventListener('click', generateCustomTest); }
-    if (connectChatBtn) { connectChatBtn.addEventListener('click', connectChat); }
-    if (sendChatMessageBtn) { sendChatMessageBtn.addEventListener('click', sendChatMessage); }
-    if (chatMessageInput) { // Añadido chequeo de existencia
+    if (prevBtn) { prevBtn.addEventListener('click', showPreviousQuestion); } else { console.error('ERROR: prevBtn not found.'); }
+    if (nextBtn) { nextBtn.addEventListener('click', showNextQuestion); } else { console.error('ERROR: nextBtn not found.'); } // La lógica de click se actualiza dinámicamente en updateNavButtons
+    if (generateTestBtn) { generateTestBtn.addEventListener('click', generateCustomTest); } else { console.error('ERROR: generateTestBtn not found.'); }
+    if (connectChatBtn) { connectChatBtn.addEventListener('click', connectChat); } else { console.error('ERROR: connectChatBtn not found.'); }
+    if (sendChatMessageBtn) { sendChatMessageBtn.addEventListener('click', sendChatMessage); } else { console.error('ERROR: sendChatMessageBtn not found.'); }
+    if (chatMessageInput) {
       chatMessageInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
           sendChatMessage();
         }
       });
-    }
+    } else { console.error('ERROR: chatMessageInput not found.'); }
   });
 
 })(); // Fin de la IIFE (Immediately Invoked Function Expression)
